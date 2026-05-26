@@ -75,7 +75,7 @@ FitResponse GRUResponse = Trainer.Fit(gru, dataset, hyperparameters, trainingOpt
 
 <br/>
 
-<img width="732" height="491" alt="image" src="https://github.com/user-attachments/assets/dd93f351-a2d0-45df-8abc-9c40a844c48a" />
+<img width="732" height="491" alt="image" src="https://github.com/user-attachments/assets/7a3770e4-9c56-4bbb-9365-76e38d1633c3" />
 
 <br/>
 
