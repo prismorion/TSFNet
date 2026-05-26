@@ -1,0 +1,11 @@
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.deps.json
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.dll
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.pdb
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.GeneratedMSBuildEditorConfig.editorconfig
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.AssemblyInfoInputs.cache
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.AssemblyInfo.cs
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.csproj.CoreCompileInputs.cache
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.dll
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\refint\TSFNet.dll
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.pdb
+E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\ref\TSFNet.dll
