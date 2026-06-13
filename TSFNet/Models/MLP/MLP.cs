@@ -5,12 +5,19 @@ using TSFNet.Training.Parameters;
 
 namespace TSFNet.Models.MLP
 {
+    /// <summary>
+    /// Многослойный перцептрон (полносвязная сеть прямого распространения)
+    /// с активацией Leaky ReLU в скрытых слоях и линейным выходным слоём.
+    /// </summary>
     public class MLP : ITrainable<double[], MLPBuffers, MLPSnapshot>
     {
         private double[][][] weights;   // веса
         private double[][] biases;      // веса сдвигов
         private double[][] layers;      // слои нейронов
 
+        /// <summary>
+        /// Создание сети по размерам слоёв; выделение весов/сдвигов и инициализация весов методом He.
+        /// </summary>
         public MLP(int[] layerSize)
         {
             // инициализация массивов
@@ -41,7 +48,10 @@ namespace TSFNet.Models.MLP
             }
         }
 
-        public double[] Forward(double[] input)
+        /// <summary>
+        /// Прямой проход: вычисление выхода сети по входному вектору.
+        /// </summary>
+        public double[] Predict(double[] input)
         {
             Array.Copy(input, layers[0], input.Length);
 
@@ -59,8 +69,11 @@ namespace TSFNet.Models.MLP
             LinAlgMath.AddVec(layers[i], biases[i - 1], layers[i]);
 
             return (double[])layers[i].Clone();
-        }        
+        }
 
+        /// <summary>
+        /// Обучение на одной эпохе: проход по батчам с накоплением градиентов и обновлением весов.
+        /// </summary>
         public void Train(Dataset<double[]> dataset, Hyperparameters options, MLPBuffers mlpBuffers)
         {
             // проход по примерам с шагом в размер батча
@@ -72,7 +85,7 @@ namespace TSFNet.Models.MLP
                 // проход по батчу
                 for (int b = 0; b < size; b++)
                 {
-                    double[] output = Forward(dataset.GetInput(i + b));
+                    double[] output = Predict(dataset.GetInput(i + b));
                     LossFunctions.MSEDerivative(dataset.GetTarget(i + b), output, mlpBuffers.dOutputs[b]);
 
                     // deepcopy слоёв в каждом батче
@@ -84,6 +97,9 @@ namespace TSFNet.Models.MLP
             }
         }
 
+        /// <summary>
+        /// Обратное распространение ошибки по батчу и обновление весов и сдвигов (с L2-регуляризацией).
+        /// </summary>
         private void Backward(MLPBuffers mlpBuffers, int size, double learningRate, double l2Lambda)
         {
             // обнуление аккумуляторов сумм перед батчем
@@ -125,9 +141,15 @@ namespace TSFNet.Models.MLP
             }
         }
 
+        /// <summary>
+        /// Создание буферов для обучения под текущую конфигурацию сети.
+        /// </summary>
         public MLPBuffers CreateBuffer(Dataset<double[]> dataset, Hyperparameters options)
             => new MLPBuffers(layers, weights, biases, options.batchSize);
 
+        /// <summary>
+        /// Создание буфера-снимка для сохранения параметров сети.
+        /// </summary>
         public MLPSnapshot CreateSnapshotBuffer()
         {
             int[] layersSize = new int[layers.Length];
@@ -137,12 +159,18 @@ namespace TSFNet.Models.MLP
             return new MLPSnapshot(layersSize);
         }
 
+        /// <summary>
+        /// Сохранение текущих весов и сдвигов в снимок.
+        /// </summary>
         public void SaveSnapshot(MLPSnapshot mlpSnapshot)
         {
             ArrayCopyUtils.Copy(weights, mlpSnapshot.weights);
             ArrayCopyUtils.Copy(biases, mlpSnapshot.biases);
         }
 
+        /// <summary>
+        /// Восстановление весов и сдвигов из снимка.
+        /// </summary>
         public void RestoreSnapshot(MLPSnapshot mlpSnapshot)
         {
             ArrayCopyUtils.Copy(mlpSnapshot.weights, weights);

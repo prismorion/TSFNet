@@ -56,3 +56,4 @@ E:\КубГТУ\+ВКР\TSFNet\ForTests\obj\Release\net8.0-windows\refint\ForTes
 E:\КубГТУ\+ВКР\TSFNet\ForTests\obj\Release\net8.0-windows\ForTests.pdb
 E:\КубГТУ\+ВКР\TSFNet\ForTests\obj\Release\net8.0-windows\ForTests.genruntimeconfig.cache
 E:\КубГТУ\+ВКР\TSFNet\ForTests\obj\Release\net8.0-windows\ref\ForTests.dll
+E:\КубГТУ\+ВКР\TSFNet\ForTests\obj\Release\net8.0-windows\ForTests.sourcelink.json

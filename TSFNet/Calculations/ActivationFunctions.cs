@@ -7,7 +7,7 @@
     internal static class ActivationFunctions
     {
         /// <summary>
-        /// Сигмоида: σ(x) = 1 / (1 + e⁻ˣ). Диапазон (0, 1).
+        /// Сигмоида: сжатие значений в диапазон (0, 1).
         /// </summary>
         public static void Sigmoid(double[] x, double[] dest)
         {
@@ -16,7 +16,7 @@
         }
 
         /// <summary>
-        /// Производная сигмоиды: σ'= σ · (1 − σ). Принимает выход Sigmoid.
+        /// Производная сигмоиды. Принимает выход Sigmoid.
         /// </summary>
         public static void SigmoidDerivative(double[] sigmoidOutput, double[] dest)
         {
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Гиперболический тангенс: tanh(x). Диапазон (-1, 1).
+        /// Гиперболический тангенс: сжатие значений в диапазон (−1, 1).
         /// </summary>
         public static void Tanh(double[] x, double[] dest)
         {
@@ -34,7 +34,7 @@
         }
 
         /// <summary>
-        /// Производная tanh: 1 − t². Принимает выход Tanh.
+        /// Производная гиперболического тангенса. Принимает выход Tanh.
         /// </summary>
         public static void TanhDerivative(double[] tanhOutput, double[] dest)
         {

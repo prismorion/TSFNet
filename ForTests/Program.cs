@@ -94,9 +94,9 @@ namespace ForTests
             Console.WriteLine();
 
             Console.WriteLine("\n=== Метрики ===");
-            PrintMetrics("MLP", testDataset, mlp.Forward);
-            PrintMetrics("RNN", testSeqDataset, rnn.Forward);
-            PrintMetrics("GRU", testSeqDataset, gru.Forward);
+            PrintMetrics("MLP", testDataset, mlp.Predict);
+            PrintMetrics("RNN", testSeqDataset, rnn.Predict);
+            PrintMetrics("GRU", testSeqDataset, gru.Predict);
 
             // === Построение графика ===
             string name = "y = 0.2x + 2sin(0.2x) + 0.5cos(x) - cos(0.7x) + 2";
@@ -118,9 +118,9 @@ namespace ForTests
             for (int k = 0; k < totalPoints; k++)
                 xsPred[k] = records[windowSize + k].X;
 
-            var predMLP = PredictTeacherForced(mlp.Forward, inputs, scaler, records, windowSize, output);
-            var predRNN = PredictTeacherForced(rnn.Forward, seqInputs, scaler, records, windowSize, output);
-            var predGRU = PredictTeacherForced(gru.Forward, seqInputs, scaler, records, windowSize, output);
+            var predMLP = PredictTeacherForced(mlp.Predict, inputs, scaler, records, windowSize, output);
+            var predRNN = PredictTeacherForced(rnn.Predict, seqInputs, scaler, records, windowSize, output);
+            var predGRU = PredictTeacherForced(gru.Predict, seqInputs, scaler, records, windowSize, output);
 
             ModelPlot mlpPlot = new ModelPlot("MLP", System.Drawing.Color.Green, xsPred, predMLP);
             ModelPlot rnnPlot = new ModelPlot("RNN", System.Drawing.Color.Red, xsPred, predRNN);

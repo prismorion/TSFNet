@@ -2,6 +2,10 @@
 
 namespace TSFNet.Models.GRU
 {
+    /// <summary>
+    /// Снимок параметров GRU (веса вентилей, веса выхода и сдвиги)
+    /// для сохранения и восстановления лучшего состояния сети.
+    /// </summary>
     public class GRUSnapshot
     {
         // веса
@@ -20,6 +24,9 @@ namespace TSFNet.Models.GRU
         public double[][] V;
         public double[] by;
 
+        /// <summary>
+        /// Выделение массивов весов и сдвигов под размеры сети.
+        /// </summary>
         public GRUSnapshot(int inputSize, int hiddenSize, int outputSize)
         {
             Wz = new double[hiddenSize][];

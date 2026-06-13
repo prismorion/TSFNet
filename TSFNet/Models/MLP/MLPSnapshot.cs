@@ -1,10 +1,16 @@
 ﻿namespace TSFNet.Models.MLP
 {
+    /// <summary>
+    /// Снимок параметров MLP (веса и сдвиги) для сохранения и восстановления лучшего состояния сети.
+    /// </summary>
     public class MLPSnapshot
     {
         public double[][][] weights;   // веса
         public double[][] biases;      // веса сдвигов
 
+        /// <summary>
+        /// Выделение массивов весов и сдвигов под размеры слоёв.
+        /// </summary>
         public MLPSnapshot(int[] layerSize)
         {
             // инициализация массивов

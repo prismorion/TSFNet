@@ -1,5 +1,9 @@
 ﻿namespace TSFNet.Models.MLP
 {
+    /// <summary>
+    /// Переиспользуемые буферы для обучения MLP: история слоёв, аккумуляторы
+    /// и временные массивы градиентов на батч.
+    /// </summary>
     public class MLPBuffers
     {
         // буферы распространяются на батч
@@ -11,6 +15,9 @@
         public double[][] deltas;           // дельты
         public double[][] derivative;       // производные
 
+        /// <summary>
+        /// Выделение всех буферов под размеры сети и размер батча.
+        /// </summary>
         public MLPBuffers(double[][] layers, double[][][] weights, double[][] biases, int batchSize)
         {
             // буфер для хранения loss на каждом батче
@@ -55,6 +62,9 @@
                 derivative[i] = new double[layers[i].Length];
         }
 
+        /// <summary>
+        /// Обнуление аккумуляторов градиентов весов и сдвигов перед батчем.
+        /// </summary>
         public void ClearAccum()
         {
             for (int i = 0; i < sumDWeights.Length; i++)

@@ -5,6 +5,10 @@ using TSFNet.Training.Parameters;
 
 namespace TSFNet.Models.GRU
 {
+    /// <summary>
+    /// Рекуррентная сеть с управляемыми вентилями (GRU): вентили обновления и сброса,
+    /// обучаемая методом обратного распространения во времени (BPTT) с отсечением градиента.
+    /// </summary>
     public class GRU : ITrainable<double[][], GRUBuffers, GRUSnapshot>
     {
         // слои нейронов
@@ -32,6 +36,9 @@ namespace TSFNet.Models.GRU
         private double[][] V;
         private double[] by;
 
+        /// <summary>
+        /// Создание сети по размерам входа, скрытого слоя и выхода; инициализация весов вентилей методом Xavier.
+        /// </summary>
         public GRU(int inputSize, int hiddenSize, int outputSize)
         {
             // инициализация массивов
@@ -85,7 +92,11 @@ namespace TSFNet.Models.GRU
             WeightInitializer.Xavier(V, hiddenSize, outputSize);
         }
 
-        public double[] Forward(double[] input)
+        /// <summary>
+        /// Прямой проход одного таймстепа: расчёт вентилей обновления и сброса, кандидата
+        /// и нового скрытого состояния, вычисление выхода.
+        /// </summary>
+        public double[] Predict(double[] input)
         {
             Array.Copy(input, _input, input.Length);
 
@@ -127,20 +138,29 @@ namespace TSFNet.Models.GRU
             return (double[])_output.Clone();
         }
 
-        public double[] Forward(double[][] input)
+        /// <summary>
+        /// Прямой проход по всей последовательности: сброс состояния и обработка таймстепов по порядку.
+        /// </summary>
+        public double[] Predict(double[][] input)
         {
             ClearHiddenState();
             for (int i = 0; i < input.Length; i++)
-                Forward(input[i]);
+                Predict(input[i]);
 
             return (double[])_output.Clone();
         }
 
+        /// <summary>
+        /// Обнуление скрытого состояния сети.
+        /// </summary>
         public void ClearHiddenState()
         {
             Array.Clear(_hidden);
         }
 
+        /// <summary>
+        /// Обучение на одной эпохе: проход по батчам с сохранением истории вентилей и состояний и обновлением весов.
+        /// </summary>
         public void Train(Dataset<double[][]> dataset, Hyperparameters options, GRUBuffers gruBuffers)
         {
             // проход по примерам с шагом в размер батча
@@ -159,7 +179,7 @@ namespace TSFNet.Models.GRU
                     for (int t = 0; t < dataset.GetInput(i + b).Length; t++)
                     {
                         Array.Copy(dataset.GetInput(i + b)[t], gruBuffers.inputHistory[b][t], _input.Length);
-                        Forward(dataset.GetInput(i + b)[t]);
+                        Predict(dataset.GetInput(i + b)[t]);
                         Array.Copy(_z, gruBuffers.zHistory[b][t], _z.Length);
                         Array.Copy(_r, gruBuffers.rHistory[b][t], _r.Length);
                         Array.Copy(_h, gruBuffers.hHistory[b][t], _h.Length);
@@ -173,6 +193,10 @@ namespace TSFNet.Models.GRU
             }
         }
 
+        /// <summary>
+        /// Обратное распространение во времени (BPTT) по батчу через вентили
+        /// с отсечением градиента и обновлением весов.
+        /// </summary>
         private void Backward(GRUBuffers gruBuffers, int size, double learningRate, double l2Lambda, double threshold)
         {
             int sequenceLength = gruBuffers.hiddenHistory[0].Length;
@@ -301,12 +325,21 @@ namespace TSFNet.Models.GRU
             LinAlgMath.SubVec(by, gruBuffers.sumDby, by);
         }
 
+        /// <summary>
+        /// Создание буферов для обучения под текущую конфигурацию сети.
+        /// </summary>
         public GRUBuffers CreateBuffer(Dataset<double[][]> dataset, Hyperparameters options)
             => new GRUBuffers(_input, _hidden, _output, options.batchSize, dataset.GetRawInput[0].Length);
 
+        /// <summary>
+        /// Создание буфера-снимка для сохранения параметров сети.
+        /// </summary>
         public GRUSnapshot CreateSnapshotBuffer()
             => new GRUSnapshot(_input.Length, _hidden.Length, _output.Length);
 
+        /// <summary>
+        /// Сохранение текущих весов и сдвигов в снимок.
+        /// </summary>
         public void SaveSnapshot(GRUSnapshot gruSnapshot)
         {
             ArrayCopyUtils.Copy(Wz, gruSnapshot.Wz);
@@ -325,6 +358,9 @@ namespace TSFNet.Models.GRU
             ArrayCopyUtils.Copy(by, gruSnapshot.by);
         }
 
+        /// <summary>
+        /// Восстановление весов и сдвигов из снимка.
+        /// </summary>
         public void RestoreSnapshot(GRUSnapshot gruSnapshot)
         {
             ArrayCopyUtils.Copy(gruSnapshot.Wz, Wz);

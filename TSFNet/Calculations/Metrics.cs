@@ -2,8 +2,14 @@
 
 namespace TSFNet.Calculations
 {
+    /// <summary>
+    /// Метрики качества регрессии (MSE, RMSE, MAE) для отдельных примеров и для целого датасета.
+    /// </summary>
     public static class Metrics
     {
+        /// <summary>
+        /// Среднеквадратичная ошибка (MSE) между истинным и предсказанным вектором.
+        /// </summary>
         public static double MSE(double[] yTrue, double[] yPred)
         {
             int n = yTrue.Length;
@@ -16,6 +22,10 @@ namespace TSFNet.Calculations
             return sum / n;
         }
 
+        /// <summary>
+        /// Средний MSE по всему датасету для заданной функции предсказания.
+        /// </summary>
+        /// <param name="predict">Функция предсказания модели.</param>
         public static double MSE<TInput>(Dataset<TInput> dataset, Func<TInput, double[]> predict)
         {
             double sum = 0;
@@ -24,12 +34,22 @@ namespace TSFNet.Calculations
             return sum / dataset.Length;
         }
 
+        /// <summary>
+        /// Корень из среднеквадратичной ошибки (RMSE) для пары векторов.
+        /// </summary>
         public static double RMSE(double[] yTrue, double[] yPred)
             => Math.Sqrt(MSE(yTrue, yPred));
 
+        /// <summary>
+        /// Корень из среднего MSE (RMSE) по всему датасету для заданной функции предсказания.
+        /// </summary>
+        /// <param name="predict">Функция предсказания модели.</param>
         public static double RMSE<TInput>(Dataset<TInput> dataset, Func<TInput, double[]> predict)
             => Math.Sqrt(MSE(dataset, predict));
 
+        /// <summary>
+        /// Средняя абсолютная ошибка (MAE) между истинным и предсказанным вектором.
+        /// </summary>
         public static double MAE(double[] yTrue, double[] yPred)
         {
             int n = yTrue.Length;
@@ -39,6 +59,10 @@ namespace TSFNet.Calculations
             return sum / n;
         }
 
+        /// <summary>
+        /// Средняя абсолютная ошибка (MAE) по всему датасету для заданной функции предсказания.
+        /// </summary>
+        /// <param name="predict">Функция предсказания модели.</param>
         public static double MAE<TInput>(Dataset<TInput> dataset, Func<TInput, double[]> predict)
         {
             double sum = 0;

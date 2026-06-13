@@ -1,7 +1,13 @@
 ﻿namespace TSFNet.Calculations
 {
+    /// <summary>
+    /// Функции потерь и их производные для обучения сети.
+    /// </summary>
     public static class LossFunctions
     {
+        /// <summary>
+        /// Среднеквадратичная ошибка (MSE) между истинным и предсказанным вектором.
+        /// </summary>
         public static double MSE(double[] yTrue, double[] yPred)
         {
             int n = yTrue.Length;
@@ -14,6 +20,9 @@
             return sum / (2 * n);
         }
 
+        /// <summary>
+        /// Градиент MSE по вектору предсказания.
+        /// </summary>
         public static void MSEDerivative(double[] yTrue, double[] yPred, double[] dest)
         {
             int n = yTrue.Length;

@@ -6,42 +6,107 @@ using TSFNet.Training.Responses;
 
 namespace TSFNet.Training
 {
+    /// <summary>
+    /// Универсальный цикл обучения моделей: проход по эпохам, перемешивание выборки,
+    /// логирование ошибки и ранняя остановка.
+    /// </summary>
     public static class Trainer
     {
+        /// <summary>
+        /// Обучение модели заданное число эпох с перемешиванием выборки и опциональным логированием ошибки.
+        /// Возвращает затраченное время и журнал ошибки на обучающей выборке.
+        /// </summary>
         public static FitResponse Fit<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, Dataset<TInput> trainDataset,
             Hyperparameters hyperparameters, TrainingOptions trainingOptions)
         {
-            Stopwatch sw = Stopwatch.StartNew();
+            Stopwatch swTotal = Stopwatch.StartNew();
 
             Dictionary<int, double> logTrainLoss = new Dictionary<int, double>();
 
             if (trainingOptions.reportEvery > 0)
-                logTrainLoss[0] = Metrics.MSE(trainDataset, model.Forward);
+                logTrainLoss[0] = Metrics.MSE(trainDataset, model.Predict);
             
             TBuffer buffer = model.CreateBuffer(trainDataset, hyperparameters);
 
             // проход по эпохам
+            Stopwatch swTrain = new Stopwatch();
             for (int e = 1; e <= trainingOptions.epochs; e++)
             {
                 trainDataset.Shuffle();
+
+                swTrain.Start();
                 model.Train(trainDataset, hyperparameters, buffer);
+                swTrain.Stop();
 
                 if (trainingOptions.reportEvery > 0 && e % trainingOptions.reportEvery == 0)
-                    logTrainLoss[e] = Metrics.MSE(trainDataset, model.Forward);
+                    logTrainLoss[e] = Metrics.MSE(trainDataset, model.Predict);
             }
             trainDataset.ResetOrder();
 
-            sw.Stop();
-            double timeElapsed = sw.Elapsed.TotalSeconds;
+            swTotal.Stop();
 
-            return new FitResponse(timeElapsed, logTrainLoss);
+            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
+
+            return new FitResponse(totalTimeElapsed, trainTimeElapsed, logTrainLoss);
         }
 
-        public static FitEarlyStoppingResponse Fit<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, 
+        /// <summary>
+        /// Обучение модели заданное число эпох с перемешиванием выборки и опциональным логированием ошибки.
+        /// Возвращает затраченное время и журналы ошибки на обучающей выборке.
+        /// </summary>
+        public static FitResponse Fit<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, 
+            Dataset<TInput> trainDataset, Dataset<TInput> validationDataset,
+            Hyperparameters hyperparameters, TrainingOptions trainingOptions)
+        {
+            Stopwatch swTotal = Stopwatch.StartNew();
+
+            Dictionary<int, double> logTrainLoss = new Dictionary<int, double>();
+            Dictionary<int, double> logValidationLoss = new Dictionary<int, double>();
+
+            if (trainingOptions.reportEvery > 0)
+            {
+                logTrainLoss[0] = Metrics.MSE(trainDataset, model.Predict);
+                logValidationLoss[0] = Metrics.MSE(validationDataset, model.Predict);
+            }
+
+            TBuffer buffer = model.CreateBuffer(trainDataset, hyperparameters);
+
+            // проход по эпохам
+            Stopwatch swTrain = new Stopwatch();
+            for (int e = 1; e <= trainingOptions.epochs; e++)
+            {
+                trainDataset.Shuffle();
+
+                swTrain.Start();
+                model.Train(trainDataset, hyperparameters, buffer);
+                swTrain.Stop();
+
+                if (trainingOptions.reportEvery > 0 && e % trainingOptions.reportEvery == 0)
+                {
+                    logTrainLoss[e] = Metrics.MSE(trainDataset, model.Predict);
+                    logValidationLoss[e] = Metrics.MSE(validationDataset, model.Predict);
+                }
+            }
+            trainDataset.ResetOrder();
+
+            swTotal.Stop();
+
+            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
+
+            return new FitResponse(totalTimeElapsed, trainTimeElapsed, logTrainLoss, logValidationLoss);
+        }
+
+        /// <summary>
+        /// Обучение с ранней остановкой: контроль ошибки на валидации, сохранение снимка лучшего состояния
+        /// и его восстановление по завершении. Возвращает время, лучшую эпоху, лучшую ошибку и журналы ошибок.
+        /// </summary>
+        public static FitEarlyStoppingResponse FitEarlyStopping<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, 
             Dataset<TInput> trainDataset, Dataset<TInput> validationDataset, 
             Hyperparameters hyperparameters, TrainingOptions trainingOptions)
         {
-            Stopwatch sw = Stopwatch.StartNew();
+            Stopwatch swTotal = Stopwatch.StartNew();
 
             Dictionary<int, double> logTrainLoss = new Dictionary<int, double>();
             Dictionary<int, double> logValidationLoss = new Dictionary<int, double>();
@@ -49,8 +114,8 @@ namespace TSFNet.Training
             TBuffer buffer = model.CreateBuffer(trainDataset, hyperparameters);
             TSnapshot snapshot = model.CreateSnapshotBuffer();
 
-            double trainLoss = Metrics.MSE(trainDataset, model.Forward);
-            double validationLoss = Metrics.MSE(validationDataset, model.Forward);
+            double trainLoss = Metrics.MSE(trainDataset, model.Predict);
+            double validationLoss = Metrics.MSE(validationDataset, model.Predict);
             double bestValidationLoss = validationLoss;
             int bestEpoch = 0;
             int epochsWithoutImprovement = 0;
@@ -62,14 +127,19 @@ namespace TSFNet.Training
                 logTrainLoss[0] = trainLoss;
                 logValidationLoss[0] = validationLoss;
             }
-            
+
             // проход по эпохам
+            Stopwatch swTrain = new Stopwatch();
             for (int e = 1; e <= trainingOptions.epochs; e++)
             {
                 trainDataset.Shuffle();
+
+                swTrain.Start();
                 model.Train(trainDataset, hyperparameters, buffer);
-                trainLoss = Metrics.MSE(trainDataset, model.Forward);
-                validationLoss = Metrics.MSE(validationDataset, model.Forward);
+                swTrain.Stop();
+
+                trainLoss = Metrics.MSE(trainDataset, model.Predict);
+                validationLoss = Metrics.MSE(validationDataset, model.Predict);
 
                 if(validationLoss < bestValidationLoss)
                 {
@@ -98,12 +168,13 @@ namespace TSFNet.Training
                 }
             }
             model.RestoreSnapshot(snapshot);
-            trainDataset.ResetOrder();            
+            trainDataset.ResetOrder();
 
-            sw.Stop();
-            double timeElapsed = sw.Elapsed.TotalSeconds;
+            swTotal.Stop();
+            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
 
-            return new FitEarlyStoppingResponse(timeElapsed, bestEpoch, bestValidationLoss, logTrainLoss, logValidationLoss);
+            return new FitEarlyStoppingResponse(totalTimeElapsed, trainTimeElapsed, bestEpoch, bestValidationLoss, logTrainLoss, logValidationLoss);
         }
     }
 }

@@ -5,6 +5,10 @@ using TSFNet.Training.Parameters;
 
 namespace TSFNet.Models.RNN
 {
+    /// <summary>
+    /// Рекуррентная нейронная сеть (Elman RNN) с активацией tanh,
+    /// обучаемая методом обратного распространения во времени (BPTT) с отсечением градиента.
+    /// </summary>
     public class RNN : ITrainable<double[][], RNNBuffers, RNNSnapshot>
     {
         // слои нейронов
@@ -21,6 +25,9 @@ namespace TSFNet.Models.RNN
         private double[] bh; // сдвиг hidden(t)
         private double[] by; // сдвиг output
 
+        /// <summary>
+        /// Создание сети по размерам входа, скрытого слоя и выхода; инициализация весов методом Xavier.
+        /// </summary>
         public RNN(int inputSize, int hiddenSize, int outputSize)
         {
             // инициализация массивов
@@ -49,7 +56,10 @@ namespace TSFNet.Models.RNN
             WeightInitializer.Xavier(V, hiddenSize, outputSize);
         }
 
-        public double[] Forward(double[] input)
+        /// <summary>
+        /// Прямой проход одного таймстепа: обновление скрытого состояния и вычисление выхода.
+        /// </summary>
+        public double[] Predict(double[] input)
         {
             Array.Copy(input, _input, input.Length);
             double[] temp = new double[_hidden.Length];
@@ -66,20 +76,29 @@ namespace TSFNet.Models.RNN
             return (double[])_output.Clone();
         }
 
-        public double[] Forward(double[][] input)
+        /// <summary>
+        /// Прямой проход по всей последовательности: сброс состояния и обработка таймстепов по порядку.
+        /// </summary>
+        public double[] Predict(double[][] input)
         {
             ClearHiddenState();
             for (int i = 0; i < input.Length; i++)
-                Forward(input[i]);
+                Predict(input[i]);
 
             return (double[])_output.Clone();
         }
 
+        /// <summary>
+        /// Обнуление скрытого состояния сети.
+        /// </summary>
         public void ClearHiddenState()
         {
             Array.Clear(_hidden);
-        }        
+        }
 
+        /// <summary>
+        /// Обучение на одной эпохе: проход по батчам с сохранением истории состояний и обновлением весов.
+        /// </summary>
         public void Train(Dataset<double[][]> dataset, Hyperparameters options, RNNBuffers rnnBuffers)
         {
             // проход по примерам с шагом в размер батча
@@ -98,7 +117,7 @@ namespace TSFNet.Models.RNN
                     for (int t = 0; t < dataset.GetInput(i + b).Length; t++)
                     {
                         Array.Copy(dataset.GetInput(i + b)[t], rnnBuffers.inputHistory[b][t], _input.Length);
-                        Forward(dataset.GetInput(i + b)[t]);
+                        Predict(dataset.GetInput(i + b)[t]);
                         Array.Copy(_hidden, rnnBuffers.hiddenHistory[b][t + 1], _hidden.Length);
                     }
 
@@ -109,6 +128,9 @@ namespace TSFNet.Models.RNN
             }
         }
 
+        /// <summary>
+        /// Обратное распространение во времени (BPTT) по батчу с отсечением градиента и обновлением весов.
+        /// </summary>
         private void Backward(RNNBuffers rnnBuffers, int size, double learningRate, double l2Lambda, double threshold)
         {
             int sequenceLength = rnnBuffers.hiddenHistory[0].Length;
@@ -177,12 +199,21 @@ namespace TSFNet.Models.RNN
             LinAlgMath.SubVec(by, rnnBuffers.sumDby, by);
         }
 
+        /// <summary>
+        /// Создание буферов для обучения под текущую конфигурацию сети.
+        /// </summary>
         public RNNBuffers CreateBuffer(Dataset<double[][]> dataset, Hyperparameters options)
             => new RNNBuffers(_input, _hidden, _output, options.batchSize, dataset.GetRawInput[0].Length);
 
+        /// <summary>
+        /// Создание буфера-снимка для сохранения параметров сети.
+        /// </summary>
         public RNNSnapshot CreateSnapshotBuffer()
             => new RNNSnapshot(_input.Length, _hidden.Length, _output.Length);
 
+        /// <summary>
+        /// Сохранение текущих весов и сдвигов в снимок.
+        /// </summary>
         public void SaveSnapshot(RNNSnapshot rnnSnapshot)
         {
             ArrayCopyUtils.Copy(W, rnnSnapshot.W);
@@ -193,6 +224,9 @@ namespace TSFNet.Models.RNN
             ArrayCopyUtils.Copy(by, rnnSnapshot.by);
         }
 
+        /// <summary>
+        /// Восстановление весов и сдвигов из снимка.
+        /// </summary>
         public void RestoreSnapshot(RNNSnapshot rnnSnapshot)
         {
             ArrayCopyUtils.Copy(rnnSnapshot.W, W);

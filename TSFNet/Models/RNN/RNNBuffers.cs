@@ -2,6 +2,10 @@
 
 namespace TSFNet.Models.RNN
 {
+    /// <summary>
+    /// Переиспользуемые буферы для обучения RNN: истории входов и скрытых состояний,
+    /// аккумуляторы градиентов и накопитель L2-нормы для отсечения градиента.
+    /// </summary>
     public class RNNBuffers
     {
         public double[][] dOutputs;
@@ -24,6 +28,9 @@ namespace TSFNet.Models.RNN
         public L2NormAccumulator l2n;
         public double scale = 1;
 
+        /// <summary>
+        /// Выделение всех буферов под размеры сети, размер батча и длину последовательности.
+        /// </summary>
         public RNNBuffers(double[] _input, double[] _hidden, double[] _output, int batchSize, int seqLen)
         {
             // буферы на каждом батче
@@ -77,6 +84,9 @@ namespace TSFNet.Models.RNN
             l2n = new L2NormAccumulator();
         }
 
+        /// <summary>
+        /// Обнуление аккумуляторов градиентов и сброс накопителя L2-нормы перед батчем.
+        /// </summary>
         public void ClearAccum()
         {
             // обнуление аккумуляторов перед батчем

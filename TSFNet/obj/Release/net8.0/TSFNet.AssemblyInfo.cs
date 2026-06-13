@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TSFNet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ff3fb96b91e95e979a962997dbaf05ac2a511ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("TSFNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TSFNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

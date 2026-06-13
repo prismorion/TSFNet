@@ -1,7 +1,14 @@
 ﻿namespace TSFNet.Data
 {
+    /// <summary>
+    /// Дифференцирование и обратное интегрирование временного ряда
+    /// (приведение к стационарности и восстановление исходных значений).
+    /// </summary>
     public static class Differencer
     {
+        /// <summary>
+        /// Первая разность ряда: разности соседних элементов. Длина результата на 1 меньше.
+        /// </summary>
         public static double[] Diff(double[] values)
         {
             double[] res = new double[values.Length - 1];
@@ -10,6 +17,9 @@
             return res;
         }
 
+        /// <summary>
+        /// Восстановление исходного ряда из разностей по якорному начальному значению.
+        /// </summary>
         public static double[] InverseDiff(double[] values, double anchor)
         {
             double[] res = new double[values.Length + 1];
