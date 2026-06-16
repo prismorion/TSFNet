@@ -16,8 +16,8 @@ namespace TSFNet.Training
         /// Обучение модели заданное число эпох с перемешиванием выборки и опциональным логированием ошибки.
         /// Возвращает затраченное время и журнал ошибки на обучающей выборке.
         /// </summary>
-        public static FitResponse Fit<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, Dataset<TInput> trainDataset,
-            Hyperparameters hyperparameters, TrainingOptions trainingOptions)
+        public static FitResponse Fit<TInput, TBuffer, TSnapshot>(ITrainable<TInput, TBuffer, TSnapshot> model, 
+            Dataset<TInput> trainDataset, Hyperparameters hyperparameters, TrainingOptions trainingOptions)
         {
             Stopwatch swTotal = Stopwatch.StartNew();
 
@@ -45,8 +45,8 @@ namespace TSFNet.Training
 
             swTotal.Stop();
 
-            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
-            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
+            double totalTimeElapsed = swTotal.Elapsed.TotalMilliseconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalMilliseconds;
 
             return new FitResponse(totalTimeElapsed, trainTimeElapsed, logTrainLoss);
         }
@@ -92,8 +92,8 @@ namespace TSFNet.Training
 
             swTotal.Stop();
 
-            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
-            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
+            double totalTimeElapsed = swTotal.Elapsed.TotalMilliseconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalMilliseconds;
 
             return new FitResponse(totalTimeElapsed, trainTimeElapsed, logTrainLoss, logValidationLoss);
         }
@@ -171,8 +171,8 @@ namespace TSFNet.Training
             trainDataset.ResetOrder();
 
             swTotal.Stop();
-            double totalTimeElapsed = swTotal.Elapsed.TotalSeconds;
-            double trainTimeElapsed = swTrain.Elapsed.TotalSeconds;
+            double totalTimeElapsed = swTotal.Elapsed.TotalMilliseconds;
+            double trainTimeElapsed = swTrain.Elapsed.TotalMilliseconds;
 
             return new FitEarlyStoppingResponse(totalTimeElapsed, trainTimeElapsed, bestEpoch, bestValidationLoss, logTrainLoss, logValidationLoss);
         }

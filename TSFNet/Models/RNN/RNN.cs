@@ -84,7 +84,7 @@ namespace TSFNet.Models.RNN
             ClearHiddenState();
             for (int i = 0; i < input.Length; i++)
                 Predict(input[i]);
-
+            ClearHiddenState();
             return (double[])_output.Clone();
         }
 
@@ -124,8 +124,9 @@ namespace TSFNet.Models.RNN
                     LossFunctions.MSEDerivative(dataset.GetTarget(i + b), _output, rnnBuffers.dOutputs[b]);
                 }
 
-                Backward(rnnBuffers, size, options.learningRate, options.l2Lambda, options.threshold);
+                Backward(rnnBuffers, size, options.learningRate, options.l2Lambda, options.threshold);                
             }
+            ClearHiddenState();
         }
 
         /// <summary>

@@ -16,9 +16,21 @@ namespace TSFNet.Calculations
             double sum = 0;
             for (int i = 0; i < n; i++)
             {
-                double d = yPred[i] - yTrue[i];
+                double d = yTrue[i] - yPred[i];
                 sum += d * d;
             }
+            return sum / n;
+        }
+
+        /// <summary>
+        /// Среднеквадратичная ошибка (MSE) между истинным и предсказанным вектором.
+        /// </summary>
+        public static double MSE(double[][] yTrue, double[][] yPred)
+        {
+            int n = yTrue.Length;
+            double sum = 0;
+            for (int i = 0; i < n; i++)
+                sum += MSE(yTrue[i], yPred[i]);
             return sum / n;
         }
 
@@ -41,6 +53,12 @@ namespace TSFNet.Calculations
             => Math.Sqrt(MSE(yTrue, yPred));
 
         /// <summary>
+        /// Корень из среднеквадратичной ошибки (RMSE) для пары векторов.
+        /// </summary>
+        public static double RMSE(double[][] yTrue, double[][] yPred)
+            => Math.Sqrt(MSE(yTrue, yPred));
+
+        /// <summary>
         /// Корень из среднего MSE (RMSE) по всему датасету для заданной функции предсказания.
         /// </summary>
         /// <param name="predict">Функция предсказания модели.</param>
@@ -55,7 +73,19 @@ namespace TSFNet.Calculations
             int n = yTrue.Length;
             double sum = 0;
             for (int i = 0; i < n; i++)
-                sum += Math.Abs(yPred[i] - yTrue[i]);
+                sum += Math.Abs(yTrue[i] - yPred[i]);
+            return sum / n;
+        }
+
+        /// <summary>
+        /// Средняя абсолютная ошибка (MAE) между истинным и предсказанным вектором.
+        /// </summary>
+        public static double MAE(double[][] yTrue, double[][] yPred)
+        {
+            int n = yTrue.Length;
+            double sum = 0;
+            for (int i = 0; i < n; i++)
+                sum += MAE(yTrue[i], yPred[i]);
             return sum / n;
         }
 

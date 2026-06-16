@@ -21,12 +21,12 @@
         /// <summary>
         /// Создание набора гиперпараметров со значениями по умолчанию.
         /// </summary>
-        public Hyperparameters(double _learningRate = 0.01, int _batchSize = 1, double _l2Lambda = 0, double _threshold = 5)
+        public Hyperparameters(double learningRate = 0.01, int batchSize = 1, double l2Lambda = 0, double threshold = 5)
         {
-            learningRate = _learningRate;
-            batchSize = _batchSize;
-            l2Lambda = _l2Lambda;
-            threshold = _threshold;
+            this.learningRate = learningRate;
+            this.batchSize = batchSize;
+            this.l2Lambda = l2Lambda;
+            this.threshold = threshold;
         }
     }
 }

@@ -17,11 +17,11 @@
         /// <summary>
         /// Создание набора опций обучения со значениями по умолчанию.
         /// </summary>
-        public TrainingOptions(int _epochs = 100, int _reportEvery = 0, int _patience = 20)
+        public TrainingOptions(int epochs = 100, int reportEvery = 0, int patience = 20)
         {
-            epochs = _epochs;
-            reportEvery = _reportEvery;
-            patience = _patience;
+            this.epochs = epochs;
+            this.reportEvery = reportEvery;
+            this.patience = patience;
         }
     }
 }

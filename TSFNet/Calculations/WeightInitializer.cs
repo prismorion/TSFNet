@@ -1,12 +1,12 @@
-﻿namespace TSFNet.Calculations
+﻿using TSFNet.Models.RNN;
+
+namespace TSFNet.Calculations
 {
     /// <summary>
     /// Предоставляет методы инициализации весов нейронной сети.
     /// </summary>
     internal static class WeightInitializer
     {
-        private readonly static Random rand = new Random();
-
         /// <summary>
         /// Инициализация весов методом Xavier / Glorot.
         /// Подходит для сигмоидных функций активации (tanh, sigmoid).
@@ -20,7 +20,7 @@
 
             for (int i = 0; i < weights.Length; i++)
                 for (int j = 0; j < weights[i].Length; j++)
-                    weights[i][j] = (rand.NextDouble() * 2 - 1) * a;
+                    weights[i][j] = (RandGen.Shared.NextDouble() * 2 - 1) * a;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@
 
             for (int i = 0; i < weights.Length; i++)
                 for (int j = 0; j < weights[i].Length; j++)
-                    weights[i][j] = (rand.NextDouble() * 2 - 1) * a;
+                    weights[i][j] = (RandGen.Shared.NextDouble() * 2 - 1) * a;
         }
     }
 }

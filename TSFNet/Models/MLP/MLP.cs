@@ -18,7 +18,7 @@ namespace TSFNet.Models.MLP
         /// <summary>
         /// Создание сети по размерам слоёв; выделение весов/сдвигов и инициализация весов методом He.
         /// </summary>
-        public MLP(int[] layerSize)
+        public MLP(params int[] layerSize)
         {
             // инициализация массивов
             weights = new double[layerSize.Length - 1][][];

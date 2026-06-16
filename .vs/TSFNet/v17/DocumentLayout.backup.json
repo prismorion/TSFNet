@@ -7,16 +7,8 @@
       "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\tsfnet\\training\\responses\\fitearlystoppingresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|solutionrelative:tsfnet\\training\\responses\\fitearlystoppingresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\tsfnet\\training\\responses\\fitresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|solutionrelative:tsfnet\\training\\responses\\fitresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\tsfnet\\training\\parameters\\trainingoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA9CE713-4023-4CE0-A653-8F3EFDF6F85B}|TSFNet\\TSFNet.csproj|solutionrelative:tsfnet\\training\\parameters\\trainingoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\experiments\\forecastvisualtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\experiments\\forecastvisualtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ForecastVisualTest.cs",
+              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ForecastVisualTest.cs",
+              "RelativeDocumentMoniker": "ForTests\\Experiments\\ForecastVisualTest.cs",
+              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ForecastVisualTest.cs",
+              "RelativeToolTip": "ForTests\\Experiments\\ForecastVisualTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T18:50:12.848Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -36,48 +41,9 @@
               "RelativeDocumentMoniker": "ForTests\\Program.cs",
               "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Program.cs",
               "RelativeToolTip": "ForTests\\Program.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAAAHsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAmwA4AAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-13T15:50:58.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FitEarlyStoppingResponse.cs",
-              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Responses\\FitEarlyStoppingResponse.cs",
-              "RelativeDocumentMoniker": "TSFNet\\Training\\Responses\\FitEarlyStoppingResponse.cs",
-              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Responses\\FitEarlyStoppingResponse.cs",
-              "RelativeToolTip": "TSFNet\\Training\\Responses\\FitEarlyStoppingResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-13T15:46:13.528Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FitResponse.cs",
-              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Responses\\FitResponse.cs",
-              "RelativeDocumentMoniker": "TSFNet\\Training\\Responses\\FitResponse.cs",
-              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Responses\\FitResponse.cs",
-              "RelativeToolTip": "TSFNet\\Training\\Responses\\FitResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-13T15:49:08.408Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TrainingOptions.cs",
-              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Parameters\\TrainingOptions.cs",
-              "RelativeDocumentMoniker": "TSFNet\\Training\\Parameters\\TrainingOptions.cs",
-              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\TSFNet\\Training\\Parameters\\TrainingOptions.cs",
-              "RelativeToolTip": "TSFNet\\Training\\Parameters\\TrainingOptions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-13T15:47:36.777Z",
+              "WhenOpened": "2026-06-15T01:01:22.485Z",
               "EditorCaption": ""
             }
           ]

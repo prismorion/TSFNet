@@ -146,7 +146,7 @@ namespace TSFNet.Models.GRU
             ClearHiddenState();
             for (int i = 0; i < input.Length; i++)
                 Predict(input[i]);
-
+            ClearHiddenState();
             return (double[])_output.Clone();
         }
 
@@ -191,6 +191,7 @@ namespace TSFNet.Models.GRU
 
                 Backward(gruBuffers, size, options.learningRate, options.l2Lambda, options.threshold);
             }
+            ClearHiddenState();
         }
 
         /// <summary>

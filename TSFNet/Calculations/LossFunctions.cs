@@ -14,7 +14,7 @@
             double sum = 0;
             for (int i = 0; i < n; i++)
             {
-                double d = yPred[i] - yTrue[i];
+                double d = yTrue[i] - yPred[i];
                 sum += d * d;
             }
             return sum / (2 * n);

@@ -1,4 +1,7 @@
-﻿namespace TSFNet.Data
+﻿using TSFNet.Calculations;
+using TSFNet.Models.RNN;
+
+namespace TSFNet.Data
 {
     /// <summary>
     /// Контейнер обучающей выборки: пары "вход - целевое значение" с обходом
@@ -9,7 +12,6 @@
         private TInput[] inputs;
         private double[][] targets;
         private int[] order;
-        private static Random rand = new Random();
 
         /// <summary>
         /// Создание датасета из массивов входов и целевых значений; инициализация порядка обхода.
@@ -54,7 +56,7 @@
         {
             for (int i = order.Length - 1; i > 0; i--)
             {
-                int j = rand.Next(i + 1);
+                int j = RandGen.Shared.Next(i + 1);
                 (order[i], order[j]) = (order[j], order[i]);
             }
         }
