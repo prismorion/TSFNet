@@ -81,7 +81,7 @@ namespace ForTests.Experiments
             Trainer.FitEarlyStopping(rnn, trainSeqDataset, valSeqDataset, hyperparameters, trainingOptions);
             Trainer.FitEarlyStopping(gru, trainSeqDataset, valSeqDataset, hyperparameters, trainingOptions);
 
-            // одна длинная авторегрессионная раскрутка на весь тест
+            // подготовка массивов для хранения предсказаний
             double[] xsTest = new double[testSize];
             double[] yActual = new double[testSize];
             double[] yMlp = new double[testSize];
@@ -96,6 +96,7 @@ namespace ForTests.Experiments
             double anchor = scaledY[offset + windowSize];
             double mlpDiffSum = 0, rnnDiffSum = 0, gruDiffSum = 0;
 
+            // авторегрессия
             for (int k = 0; k < testSize; k++)
             {
                 double mlpDiff = mlp.Predict(windowMlp)[0];
@@ -118,6 +119,7 @@ namespace ForTests.Experiments
                 RefreshWindow(windowGru, gruDiff);
             }
 
+            // вывод результатов
             ShowMetrics(yActual, yMlp, yRnn, yGru);
             Plot("Авторегрессионный прогноз на тестовом участке", xsTest, yActual, yMlp, yRnn, yGru);
         }
