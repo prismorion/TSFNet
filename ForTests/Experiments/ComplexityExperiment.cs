@@ -31,13 +31,11 @@ namespace ForTests.Experiments
             hyperparameters.threshold = 5;
 
             TrainingOptions trainingOptions = new TrainingOptions();
-            trainingOptions.epochs = 100;
+            trainingOptions.epochs = 200;
             trainingOptions.reportEvery = 0;
 
             // прогрев JIT
-            Calculation(windowSize, hiddenSizes[0], trainDataset, trainSeqDataset, hyperparameters, trainingOptions);
-
-            trainingOptions.epochs = 200;
+            Calculation(windowSize, hiddenSizes[0], trainDataset, trainSeqDataset, hyperparameters, trainingOptions);            
 
             double[] mlpResult = new double[repeats];
             double[] rnnResult = new double[repeats];

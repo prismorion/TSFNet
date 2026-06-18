@@ -26,7 +26,7 @@ namespace ForTests.Experiments
             var scaler = new StandardScaler(allY.Take(trainDots).ToArray());
             var scaledY = scaler.Transform(allY);
 
-            // приведение к стационарности (дифф нужен ради тренда)
+            // приведение к стационарности
             double[] diffScaledY = Differencer.Diff(scaledY);
 
             // при дифференцировании теряется первое значение
@@ -34,7 +34,7 @@ namespace ForTests.Experiments
             for (int i = 0; i < diffScaledY.Length; i++)
                 preparedRecords.Add(new Dot(records[i + 1].X, diffScaledY[i]));
 
-            // масштаб MASE: наивная MAE на трейне исходного ряда, от окна не зависит
+            // масштаб MASE: наивная MAE на трейне исходного ряда
             double scale = 0;
             for (int k = 1; k < trainDots; k++)
                 scale += Math.Abs(allY[k] - allY[k - 1]);
@@ -111,7 +111,7 @@ namespace ForTests.Experiments
                         gruPreds[j] = gru.Predict(seqInpTest[j]);
                     }
 
-                    // восстановление в исходные единицы (одношагово, якорь на истинное предыдущее)
+                    // восстановление в исходные единицы
                     double[] yTrue = new double[inpTest.Length];
                     double[] mlpRestored = new double[inpTest.Length];
                     double[] rnnRestored = new double[inpTest.Length];

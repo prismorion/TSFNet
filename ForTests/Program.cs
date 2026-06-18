@@ -10,8 +10,8 @@ namespace ForTests
 
             // эксперимент 1
             csvPath = "sin.csv";
-            int[] hiddenSizes = { 4, 8, 16, 32, 64 };
-            Dictionary<int, Dictionary<string, double>> resultComplexityExperiment = ComplexityExperiment.Run(csvPath, 10, hiddenSizes, repeats: 7);
+            int[] hiddenSizes = { 64, 96, 128, 160, 192, 224, 256 };
+            Dictionary<int, Dictionary<string, double>> resultComplexityExperiment = ComplexityExperiment.Run(csvPath, 2, hiddenSizes, repeats: 7);
             ComplexityExperiment.ShowResultComplexityExperiment(resultComplexityExperiment);
 
             Console.WriteLine("\n\n");

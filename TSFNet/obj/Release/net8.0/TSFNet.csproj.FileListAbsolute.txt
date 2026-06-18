@@ -10,3 +10,15 @@ E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\refint\TSFNet.dll
 E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.pdb
 E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\ref\TSFNet.dll
 E:\КубГТУ\+ВКР\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.sourcelink.json
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.deps.json
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.dll
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\bin\Release\net8.0\TSFNet.pdb
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.GeneratedMSBuildEditorConfig.editorconfig
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.AssemblyInfoInputs.cache
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.AssemblyInfo.cs
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.csproj.CoreCompileInputs.cache
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.sourcelink.json
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.dll
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\refint\TSFNet.dll
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\TSFNet.pdb
+E:\КубГТУ\Курсовые\Пономаренко ВКР\ПО\TSFNet\TSFNet\obj\Release\net8.0\ref\TSFNet.dll

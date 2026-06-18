@@ -29,7 +29,6 @@ namespace ForTests.Experiments
             // приведение к стационарности
             double[] diffScaledY = Differencer.Diff(scaledY);
 
-            // при дифференцировании теряется первое значение
             var preparedRecords = new List<Dot>();
             for (int i = 0; i < diffScaledY.Length; i++)
                 preparedRecords.Add(new Dot(records[i + 1].X, diffScaledY[i]));
@@ -45,7 +44,7 @@ namespace ForTests.Experiments
             trainingOptions.reportEvery = 0;
             trainingOptions.patience = 200;
 
-            // подготовка данных (выход 1; горизонт получаем раскруткой)
+            // подготовка данных
             var inputs = DataPreparator.InputsPreparation(preparedRecords, windowSize, 1);
             var seqInputs = DataPreparator.SeqInputsPreparation(preparedRecords, windowSize, 1);
             var targets = DataPreparator.TargetsPreparation(preparedRecords, windowSize, 1);
@@ -82,19 +81,19 @@ namespace ForTests.Experiments
             Trainer.FitEarlyStopping(rnn, trainSeqDataset, valSeqDataset, hyperparameters, trainingOptions);
             Trainer.FitEarlyStopping(gru, trainSeqDataset, valSeqDataset, hyperparameters, trainingOptions);
 
-            // одна длинная авторегрессионная раскрутка на весь тест (свободный прогон от якоря)
+            // одна длинная авторегрессионная раскрутка на весь тест
             double[] xsTest = new double[testSize];
             double[] yActual = new double[testSize];
             double[] yMlp = new double[testSize];
             double[] yRnn = new double[testSize];
             double[] yGru = new double[testSize];
 
-            // стартовые окна = последние истинные диффы перед тестом (копии, чтобы не портить данные)
+            // стартовые окна - последние истинные диффы перед тестом
             double[] windowMlp = (double[])inputs[offset].Clone();
             double[][] windowRnn = CloneSeq(seqInputs[offset]);
             double[][] windowGru = CloneSeq(seqInputs[offset]);
 
-            double anchor = scaledY[offset + windowSize];   // истинное значение на границе train/test
+            double anchor = scaledY[offset + windowSize];
             double mlpDiffSum = 0, rnnDiffSum = 0, gruDiffSum = 0;
 
             for (int k = 0; k < testSize; k++)
@@ -107,7 +106,7 @@ namespace ForTests.Experiments
                 rnnDiffSum += rnnDiff;
                 gruDiffSum += gruDiff;
 
-                int idx = offset + windowSize + 1 + k;   // индекс в allY / records
+                int idx = offset + windowSize + 1 + k;
                 xsTest[k] = records[idx].X;
                 yActual[k] = allY[idx];
                 yMlp[k] = scaler.InverseTransform(anchor + mlpDiffSum);
@@ -123,7 +122,6 @@ namespace ForTests.Experiments
             Plot("Авторегрессионный прогноз на тестовом участке", xsTest, yActual, yMlp, yRnn, yGru);
         }
 
-        // метрики слева, модели сверху
         private static void ShowMetrics(double[] actual, double[] mlp, double[] rnn, double[] gru)
         {
             double[][] preds = { mlp, rnn, gru };
@@ -145,7 +143,6 @@ namespace ForTests.Experiments
             Console.WriteLine($"|{metric,8} | {f(preds[0]),10:F4} | {f(preds[1]),10:F4} | {f(preds[2]),10:F4} |");
         }
 
-        // коэффициент детерминации R^2 = 1 - SS_res / SS_tot
         private static double R2(double[] yTrue, double[] yPred)
         {
             double mean = 0;
@@ -164,7 +161,6 @@ namespace ForTests.Experiments
             return 1.0 - ssRes / ssTot;
         }
 
-        // рисование — внутри класса, под конкретную задачу
         private static void Plot(string title, double[] xs, double[] actual,
             double[] mlp, double[] rnn, double[] gru)
         {
