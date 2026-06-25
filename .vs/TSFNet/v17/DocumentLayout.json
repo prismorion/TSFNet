@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\experiments\\forecastvisualtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\experiments\\forecastvisualtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\experiments\\windowsizeexperiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\experiments\\windowsizeexperiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\experiments\\complexityexperiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\experiments\\complexityexperiment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|e:\\\u043A\u0443\u0431\u0433\u0442\u0443\\\u002B\u0432\u043A\u0440\\tsfnet\\fortests\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{61435A3D-A434-472C-A772-3B2C3BFE2920}|ForTests\\ForTests.csproj|solutionrelative:fortests\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,28 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Program.cs",
-              "RelativeDocumentMoniker": "ForTests\\Program.cs",
-              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Program.cs",
-              "RelativeToolTip": "ForTests\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T04:21:50.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "ForecastVisualTest.cs",
               "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ForecastVisualTest.cs",
               "RelativeDocumentMoniker": "ForTests\\Experiments\\ForecastVisualTest.cs",
               "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ForecastVisualTest.cs",
               "RelativeToolTip": "ForTests\\Experiments\\ForecastVisualTest.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAADwv9UAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAAAgwNsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T04:11:53.926Z",
+              "WhenOpened": "2026-06-22T06:12:33.935Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WindowSizeExperiment.cs",
+              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\WindowSizeExperiment.cs",
+              "RelativeDocumentMoniker": "ForTests\\Experiments\\WindowSizeExperiment.cs",
+              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\WindowSizeExperiment.cs",
+              "RelativeToolTip": "ForTests\\Experiments\\WindowSizeExperiment.cs",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAowLoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T06:03:43.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ComplexityExperiment.cs",
+              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ComplexityExperiment.cs",
+              "RelativeDocumentMoniker": "ForTests\\Experiments\\ComplexityExperiment.cs",
+              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Experiments\\ComplexityExperiment.cs",
+              "RelativeToolTip": "ForTests\\Experiments\\ComplexityExperiment.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAowG0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T06:02:48.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Program.cs",
+              "RelativeDocumentMoniker": "ForTests\\Program.cs",
+              "ToolTip": "E:\\\u041A\u0443\u0431\u0413\u0422\u0423\\\u002B\u0412\u041A\u0420\\TSFNet\\ForTests\\Program.cs",
+              "RelativeToolTip": "ForTests\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T04:21:50.164Z"
             }
           ]
         }

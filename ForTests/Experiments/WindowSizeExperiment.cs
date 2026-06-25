@@ -40,21 +40,21 @@ namespace ForTests.Experiments
                 scale += Math.Abs(allY[k] - allY[k - 1]);
             scale /= (trainDots - 1);
 
+            // гиперпараметры и параметры обучения
             Hyperparameters hyperparameters = new Hyperparameters();
             hyperparameters.learningRate = 0.01;
             hyperparameters.batchSize = 4;
-            hyperparameters.l2Lambda = 0;
             hyperparameters.threshold = 5;
-
+            
             TrainingOptions trainingOptions = new TrainingOptions();
             trainingOptions.epochs = 1000;
-            trainingOptions.reportEvery = 0;
             trainingOptions.patience = 150;
 
             for (int i = 0; i < windowSizes.Length; i++)
             {
                 int w = windowSizes[i];
 
+                // разделение данных
                 var inputs = DataPreparator.InputsPreparation(preparedRecords, w, 1);
                 var seqInputs = DataPreparator.SeqInputsPreparation(preparedRecords, w, 1);
                 var targets = DataPreparator.TargetsPreparation(preparedRecords, w, 1);

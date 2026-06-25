@@ -15,6 +15,7 @@ namespace ForTests.Experiments
         {
             Dictionary<int, Dictionary<string, double>> result = new Dictionary<int, Dictionary<string, double>> { };
 
+            // считывание и разделение данных
             List<Dot> records = DotCSVHelper.Read(csvPath);
 
             var inputs = DataPreparator.InputsPreparation(records, windowSize, 1);
@@ -24,15 +25,14 @@ namespace ForTests.Experiments
             Dataset<double[]> trainDataset = new Dataset<double[]>(inputs, targets);
             Dataset<double[][]> trainSeqDataset = new Dataset<double[][]>(seqInputs, targets);
 
+            // гиперпараметры и параметры обучения
             Hyperparameters hyperparameters = new Hyperparameters();
             hyperparameters.learningRate = 0.01;
             hyperparameters.batchSize = 1;
-            hyperparameters.l2Lambda = 0;
             hyperparameters.threshold = 5;
 
             TrainingOptions trainingOptions = new TrainingOptions();
             trainingOptions.epochs = 200;
-            trainingOptions.reportEvery = 0;
 
             // прогрев JIT
             Calculation(windowSize, hiddenSizes[0], trainDataset, trainSeqDataset, hyperparameters, trainingOptions);            

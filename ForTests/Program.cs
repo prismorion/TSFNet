@@ -2,7 +2,7 @@
 
 namespace ForTests
 {
-    class Programm
+    class Program
     {
         static void Main(string[] args)
         {

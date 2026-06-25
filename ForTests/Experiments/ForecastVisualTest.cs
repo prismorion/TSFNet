@@ -33,18 +33,17 @@ namespace ForTests.Experiments
             for (int i = 0; i < diffScaledY.Length; i++)
                 preparedRecords.Add(new Dot(records[i + 1].X, diffScaledY[i]));
 
+            // гиперпараметры и параметры обучения
             Hyperparameters hyperparameters = new Hyperparameters();
             hyperparameters.learningRate = 0.01;
             hyperparameters.batchSize = 8;
-            hyperparameters.l2Lambda = 0;
             hyperparameters.threshold = 5;
 
             TrainingOptions trainingOptions = new TrainingOptions();
             trainingOptions.epochs = 2000;
-            trainingOptions.reportEvery = 0;
             trainingOptions.patience = 200;
 
-            // подготовка данных
+            // разделение данных
             var inputs = DataPreparator.InputsPreparation(preparedRecords, windowSize, 1);
             var seqInputs = DataPreparator.SeqInputsPreparation(preparedRecords, windowSize, 1);
             var targets = DataPreparator.TargetsPreparation(preparedRecords, windowSize, 1);
